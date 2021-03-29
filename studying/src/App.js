@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 import "./App.css";
-import Radium, { StyleRoot } from "radium";
+import styled from "styled-components";
 import Person from "./Person/Person";
+
+const StyledButton = styled.button`
+  background-color: ${(props) => (props.$alt ? "red" : "green")};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 0.5em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => (props.$alt ? "salmon" : "lightgreen")};
+    color: black;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -51,19 +65,6 @@ class App extends Component {
   };
 
   render() {
-    const buttonStyle = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black",
-      },
-    };
-
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -79,12 +80,6 @@ class App extends Component {
           ))}
         </div>
       );
-
-      buttonStyle.backgroundColor = "red";
-      buttonStyle[":hover"] = {
-        backgroundColor: "darkred",
-        color: "gray",
-      };
     }
 
     const paragraphClasses = [];
@@ -96,20 +91,21 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi, I'm Le Huu Tan</h1>
-          <p className={paragraphClasses.join(" ")}>
-            This is my studying React app
-          </p>
-          <button style={buttonStyle} onClick={this.toggleShowPersons}>
-            Toggle Persons
-          </button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>Hi, I'm Le Huu Tan</h1>
+        <p className={paragraphClasses.join(" ")}>
+          This is my studying React app
+        </p>
+        <StyledButton
+          $alt={this.state.showPersons}
+          onClick={this.toggleShowPersons}
+        >
+          Toggle Persons
+        </StyledButton>
+        {persons}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
