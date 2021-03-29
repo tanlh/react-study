@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./App.css";
+import classes from "./App.module.css";
 import Person from "./Person/Person";
 
 class App extends Component {
@@ -71,6 +71,7 @@ class App extends Component {
 
     const paragraphClasses = [];
     if (this.state.persons.length <= 2) {
+      console.log(classes.red);
       paragraphClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
@@ -78,7 +79,7 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm Le Huu Tan</h1>
         <p className={paragraphClasses.join(" ")}>
           This is my studying React app
