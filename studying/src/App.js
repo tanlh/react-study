@@ -50,6 +50,15 @@ class App extends Component {
   };
 
   render() {
+    const buttonStyle = {
+      backgroundColor: "green",
+      color: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer",
+    };
+
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -65,22 +74,25 @@ class App extends Component {
           ))}
         </div>
       );
+
+      buttonStyle.backgroundColor = "red";
+    }
+
+    const paragraphClasses = [];
+    if (this.state.persons.length <= 2) {
+      paragraphClasses.push("red");
+    }
+    if (this.state.persons.length <= 1) {
+      paragraphClasses.push("bold");
     }
 
     return (
       <div className="App">
         <h1>Hi, I'm Le Huu Tan</h1>
-        <p>This is my studying React app</p>
-        <button
-          style={{
-            backgroundColor: "white",
-            font: "inherit",
-            border: "1px solid blue",
-            padding: "8px",
-            cursor: "pointer",
-          }}
-          onClick={this.toggleShowPersons}
-        >
+        <p className={paragraphClasses.join(" ")}>
+          This is my studying React app
+        </p>
+        <button style={buttonStyle} onClick={this.toggleShowPersons}>
           Toggle Persons
         </button>
         {persons}
