@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./Cockpit.module.css";
 
 const Cockpit = (props) => {
+  console.log("[Cockpit.js] rendering...");
   let btnClass = "";
   if (props.showPersons) {
     btnClass = styles.Red;
@@ -10,7 +11,6 @@ const Cockpit = (props) => {
 
   const paragraphClasses = [];
   if (props.persons.length <= 2) {
-    console.log(styles.red);
     paragraphClasses.push(styles.red);
   }
   if (props.persons.length <= 1) {
@@ -19,7 +19,7 @@ const Cockpit = (props) => {
 
   return (
     <div className={styles.Cockpit}>
-      <h1>Hi, I'm Le Huu Tan</h1>
+      <h1>{props.title}</h1>
       <p className={paragraphClasses.join(" ")}>
         This is my studying React app
       </p>
