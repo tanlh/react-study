@@ -5,9 +5,6 @@ import styles from "./Cockpit.module.css";
 const Cockpit = (props) => {
   useEffect(() => {
     console.log("[Cockpit.js] useEffect showPersons");
-    setTimeout(() => {
-      alert("Person changed!");
-    }, 1000);
   }, [props.showPersons]);
 
   useEffect(() => {
