@@ -20,6 +20,8 @@ class App extends Component {
     showPersons: false,
   };
 
+  // Component lifecycle
+
   static getDerivedStateFromProps(props, state) {
     console.log("[App.js] getDerivedStateFromProps");
     return state;
@@ -28,6 +30,22 @@ class App extends Component {
   componentDidMount() {
     console.log("[App.js] componentDidMount");
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js] shouldComponentUpdate", nextProps, nextState);
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("[App.js] getSnapshotBeforeUpdate", prevProps, prevState);
+    return { message: "Snapshot!" };
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("[App.js] componentDidUpdate", prevProps, prevState, snapshot);
+  }
+
+  // End component lifecycle
 
   switchNameHandler = (newName) => {
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
