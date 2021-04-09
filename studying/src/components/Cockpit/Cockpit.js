@@ -4,8 +4,8 @@ import styles from "./Cockpit.module.css";
 
 const Cockpit = (props) => {
   useEffect(() => {
-    console.log("[Cockpit.js] useEffect showPersons");
-  }, [props.showPersons]);
+    console.log("[Cockpit.js] useEffect run everytime");
+  });
 
   useEffect(() => {
     console.log("[Cockpit.js] useEffect run once");
@@ -18,10 +18,10 @@ const Cockpit = (props) => {
   }
 
   const paragraphClasses = [];
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     paragraphClasses.push(styles.red);
   }
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     paragraphClasses.push(styles.bold);
   }
 
@@ -38,4 +38,4 @@ const Cockpit = (props) => {
   );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit);
