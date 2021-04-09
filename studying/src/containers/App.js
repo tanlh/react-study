@@ -18,6 +18,7 @@ class App extends Component {
     ],
     otherState: "some other value",
     showPersons: false,
+    showCockpit: true,
   };
 
   // Component lifecycle
@@ -83,6 +84,11 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
+  toggleCockpit = () => {
+    const doesShowCockpit = this.state.showCockpit;
+    this.setState({ showCockpit: !doesShowCockpit });
+  };
+
   render() {
     console.log("[App.js] render");
     let persons = null;
@@ -98,12 +104,15 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.toggleShowPersons}
-        />
+        <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
+        {this.state.showCockpit && (
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.toggleShowPersons}
+          />
+        )}
         {persons}
       </div>
     );
