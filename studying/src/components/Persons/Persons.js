@@ -4,15 +4,20 @@ import Person from "./Person/Person";
 
 class Persons extends Component {
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(
-      "[Persons.js] shouldComponentUpdate",
-      nextProps.persons !== this.props.persons
+    console.log("[Persons.js] shouldComponentUpdate");
+    return (
+      nextProps.persons !== this.props.persons ||
+      nextProps.changed !== this.props.changed ||
+      nextProps.click !== this.props.click
     );
-    return nextProps.persons !== this.props.persons;
   }
 
   componentDidUpdate() {
     console.log("[Persons.js] componentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("[Persons.js] componentWillUnmount");
   }
 
   render() {

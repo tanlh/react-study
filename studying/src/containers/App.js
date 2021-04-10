@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import classes from "./App.module.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import withAccessLog from "../hoc/withAccessLog";
 
 class App extends Component {
   constructor(props) {
@@ -119,4 +120,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAccessLog(App);
