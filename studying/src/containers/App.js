@@ -20,6 +20,7 @@ class App extends Component {
     otherState: "some other value",
     showPersons: false,
     showCockpit: true,
+    changeCounter: 0,
   };
 
   // Component lifecycle
@@ -70,7 +71,11 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = toUpdatePerson;
 
-    this.setState({ persons: persons });
+    // correct way to setState, due to setState run async
+    this.setState((prevState, props) => ({
+      persons: persons,
+      changeCounter: prevState.changeCounter + 1,
+    }));
   };
 
   toggleShowPersons = () => {
