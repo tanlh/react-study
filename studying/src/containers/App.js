@@ -120,4 +120,4 @@ class App extends Component {
   }
 }
 
-export default withAccessLog(App);
+export default withAccessLog(App, "[App.js]");
