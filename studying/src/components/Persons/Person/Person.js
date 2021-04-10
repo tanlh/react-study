@@ -9,17 +9,21 @@ import AuthContext from "../../../context/auth-context";
 
 class Person extends Component {
   inputElementRef = React.createRef();
+  static contextType = AuthContext;
 
   componentDidMount() {
     // this.inputElement.focus();
     this.inputElementRef.current.focus();
+    console.log(
+      "[Person.js] context, authenticated=" + this.context.isAuthenticated
+    );
   }
 
   render() {
     console.log("[Person.js] rendering...");
     return (
       <Aux>
-        <AuthContext.Consumer>
+        {/* <AuthContext.Consumer>
           {(context) =>
             context.isAuthenticated ? (
               <p>Authenticated!</p>
@@ -27,7 +31,12 @@ class Person extends Component {
               <p>Please log in!</p>
             )
           }
-        </AuthContext.Consumer>
+        </AuthContext.Consumer> */}
+        {this.context.isAuthenticated ? (
+          <p>Authenticated!</p>
+        ) : (
+          <p>Please log in!</p>
+        )}
         <p onClick={this.props.click}>
           I'm {this.props.name} and I am {this.props.age} years old!
         </p>

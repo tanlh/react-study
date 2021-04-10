@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import AuthContext from "../../context/auth-context";
 
 import styles from "./Cockpit.module.css";
@@ -6,6 +6,7 @@ import styles from "./Cockpit.module.css";
 const Cockpit = (props) => {
   // This work either: const toggleButtonRef = React.createRef();
   const toggleButtonRef = useRef(null);
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     console.log("[Cockpit.js] useEffect run everytime");
@@ -43,9 +44,10 @@ const Cockpit = (props) => {
       >
         Toggle Persons
       </button>
-      <AuthContext.Consumer>
+      {/* <AuthContext.Consumer>
         {(context) => <button onClick={() => context.login()}>Log in</button>}
-      </AuthContext.Consumer>
+      </AuthContext.Consumer> */}
+      <button onClick={() => authContext.login()}>Log in</button>
     </div>
   );
 };
