@@ -5,6 +5,7 @@ import Aux from "../../../hoc/Aux";
 import withClass from "../../../hoc/withClass";
 
 import style from "./Person.css";
+import AuthContext from "../../../context/auth-context";
 
 class Person extends Component {
   inputElementRef = React.createRef();
@@ -18,6 +19,15 @@ class Person extends Component {
     console.log("[Person.js] rendering...");
     return (
       <Aux>
+        <AuthContext.Consumer>
+          {(context) =>
+            context.isAuthenticated ? (
+              <p>Authenticated!</p>
+            ) : (
+              <p>Please log in!</p>
+            )
+          }
+        </AuthContext.Consumer>
         <p onClick={this.props.click}>
           I'm {this.props.name} and I am {this.props.age} years old!
         </p>
