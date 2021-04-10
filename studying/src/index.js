@@ -8,4 +8,7 @@ ReactDOM.render(
   <App appTitle="Person manager" />,
   document.getElementById("root")
 );
+
+App.staticMethodPrintSomething();
+
 registerServiceWorker();

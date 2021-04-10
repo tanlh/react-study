@@ -101,6 +101,10 @@ class App extends Component {
     this.setState({ isAuthenticated: true });
   };
 
+  static staticMethodPrintSomething() {
+    console.log("[App.js] staticMethodPrintSomething");
+  }
+
   render() {
     console.log("[App.js] render");
     let persons = null;
