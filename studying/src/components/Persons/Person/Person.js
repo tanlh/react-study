@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Aux from "../../../hoc/Aux";
@@ -6,18 +6,35 @@ import withClass from "../../../hoc/withClass";
 
 import style from "./Person.css";
 
-const Person = (props) => {
-  console.log("[Person.js] rendering...");
-  return (
-    <Aux>
-      <p onClick={props.click}>
-        I'm {props.name} and I am {props.age} years old!
-      </p>
-      <p>{props.children}</p>
-      <input type="text" onChange={props.changed} value={props.name} />
-    </Aux>
-  );
-};
+class Person extends Component {
+  inputElementRef = React.createRef();
+
+  componentDidMount() {
+    // this.inputElement.focus();
+    this.inputElementRef.current.focus();
+  }
+
+  render() {
+    console.log("[Person.js] rendering...");
+    return (
+      <Aux>
+        <p onClick={this.props.click}>
+          I'm {this.props.name} and I am {this.props.age} years old!
+        </p>
+        <p>{this.props.children}</p>
+        <input
+          type="text"
+          // ref={(inputEl) => {
+          //   this.inputElement = inputEl;
+          // }}
+          ref={this.inputElementRef}
+          onChange={this.props.changed}
+          value={this.props.name}
+        />
+      </Aux>
+    );
+  }
+}
 
 Person.propTypes = {
   click: PropTypes.func,
