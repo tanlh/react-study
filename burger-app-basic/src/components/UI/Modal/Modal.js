@@ -26,4 +26,4 @@ Modal.propTypes = {
   clicked: PropTypes.func,
 };
 
-export default Modal;
+export default React.memo(Modal);
