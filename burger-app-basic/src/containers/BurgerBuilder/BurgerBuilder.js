@@ -22,6 +22,7 @@ class BuilderBuider extends Component {
     },
     totalPrice: 4,
     purchasable: false,
+    purchasing: false,
   };
 
   updatePurchasable = (updatedIngredients) => {
@@ -65,6 +66,14 @@ class BuilderBuider extends Component {
     this.updatePurchasable(updatedIngredients);
   };
 
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
+  };
+
+  purchaseCancelHandler = () => {
+    this.setState({ purchasing: false });
+  };
+
   render() {
     const disableInfo = { ...this.state.ingredients };
     for (let key in disableInfo) {
@@ -73,7 +82,10 @@ class BuilderBuider extends Component {
 
     return (
       <>
-        <Modal>
+        <Modal
+          show={this.state.purchasing}
+          modalClosed={this.purchaseCancelHandler}
+        >
           <OrderSummary ingredients={this.state.ingredients} />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
@@ -83,6 +95,7 @@ class BuilderBuider extends Component {
           disabled={disableInfo}
           price={this.state.totalPrice}
           purchasable={this.state.purchasable}
+          ordered={this.purchaseHandler}
         />
       </>
     );
