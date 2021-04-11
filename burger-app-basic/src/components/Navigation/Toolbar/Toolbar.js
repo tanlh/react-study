@@ -4,14 +4,12 @@ import PropTypes from "prop-types";
 import styles from "./Toolbar.module.css";
 import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
-import SideDrawerToggle from "../SideDrawer/SideDrawerToggle/SideDrawerToggle";
+import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
 
 const Toolbar = (props) => {
   return (
     <head className={styles.Toolbar}>
-      <div>
-        <SideDrawerToggle clicked={props.drawerToggleClicked} />
-      </div>
+      <DrawerToggle clicked={props.drawerToggleClicked} />
       <div className={styles.Logo}>
         <Logo />
       </div>
