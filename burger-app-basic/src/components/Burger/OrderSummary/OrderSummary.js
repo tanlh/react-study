@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import styles from "./OrderSummary.module.css";
+import Button from "../../UI/Button/Button";
 
 const OrderSummary = (props) => {
   const displayedIngredients = Object.entries(props.ingredients).map(
@@ -18,6 +18,12 @@ const OrderSummary = (props) => {
       <p>A delicious burger with the following ingredients:</p>
       <ul>{displayedIngredients}</ul>
       <p>Continue to Checkout?</p>
+      <Button btnType="Danger" clicked={props.purchaseCanceled}>
+        CANCEL
+      </Button>
+      <Button btnType="Success" clicked={props.purchaseContinued}>
+        CONTINUE
+      </Button>
     </>
   );
 };
