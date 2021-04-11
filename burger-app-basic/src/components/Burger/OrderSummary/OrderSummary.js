@@ -31,6 +31,11 @@ const OrderSummary = (props) => {
   );
 };
 
-OrderSummary.propTypes = {};
+OrderSummary.propTypes = {
+  price: PropTypes.number.isRequired,
+  ingredients: PropTypes.object.isRequired,
+  purchaseCanceled: PropTypes.func.isRequired,
+  purchaseContinued: PropTypes.func.isRequired,
+};
 
 export default OrderSummary;

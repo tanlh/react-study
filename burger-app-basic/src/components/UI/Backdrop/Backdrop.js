@@ -11,6 +11,8 @@ const Backdrop = (props) => {
   );
 };
 
-Backdrop.propTypes = {};
+Backdrop.propTypes = {
+  clicked: PropTypes.func.isRequired,
+};
 
 export default Backdrop;

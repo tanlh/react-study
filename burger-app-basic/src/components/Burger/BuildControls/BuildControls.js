@@ -38,6 +38,12 @@ const BuildControls = (props) => {
   );
 };
 
-BuildControls.propTypes = {};
+BuildControls.propTypes = {
+  price: PropTypes.number.isRequired,
+  ingredientAdded: PropTypes.func.isRequired,
+  ingredientRemoved: PropTypes.func.isRequired,
+  disabled: PropTypes.object.isRequired,
+  ordered: PropTypes.func.isRequired,
+};
 
 export default BuildControls;

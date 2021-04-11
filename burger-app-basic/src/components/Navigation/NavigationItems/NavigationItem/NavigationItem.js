@@ -13,6 +13,9 @@ const NavigationItem = (props) => {
   );
 };
 
-NavigationItem.propTypes = {};
+NavigationItem.propTypes = {
+  link: PropTypes.string.isRequired,
+  active: PropTypes.bool,
+};
 
 export default NavigationItem;

@@ -21,6 +21,9 @@ const Modal = (props) => {
   );
 };
 
-Modal.propTypes = {};
+Modal.propTypes = {
+  show: PropTypes.bool,
+  clicked: PropTypes.func,
+};
 
 export default Modal;
