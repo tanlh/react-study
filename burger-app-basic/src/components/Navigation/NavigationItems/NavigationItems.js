@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import styles from "./NavigationItems.module.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
@@ -14,7 +13,5 @@ const NavigationItems = (props) => {
     </ul>
   );
 };
-
-NavigationItems.propTypes = {};
 
 export default NavigationItems;
