@@ -1,0 +1,33 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+import styles from "./BuildControls.module.css";
+import { IngredientType } from "../BurgerIngredient/BurgerIngredient";
+import BuildControl from "./BuildControl/BuildControl";
+
+const controls = [
+  { label: "Salad", type: IngredientType.Salad },
+  { label: "Cheese", type: IngredientType.Cheese },
+  { label: "Meat", type: IngredientType.Meat },
+  { label: "Bacon", type: IngredientType.Bacon },
+];
+
+const BuildControls = (props) => {
+  return (
+    <div className={styles.BuildControls}>
+      {controls.map((control) => (
+        <BuildControl
+          key={control.label}
+          label={control.label}
+          added={() => props.ingredientAdded(control.type)}
+          removed={() => props.ingredientRemoved(control.type)}
+          disabled={props.disabled[control.type]}
+        />
+      ))}
+    </div>
+  );
+};
+
+BuildControls.propTypes = {};
+
+export default BuildControls;
