@@ -6,11 +6,16 @@ import BurgerIngredient, {
 } from "./BurgerIngredient/BurgerIngredient";
 
 export const Burger = (props) => {
-  const burgerIngredients = Object.keys(props.ingredients).map((igKey) =>
-    [...Array(props.ingredients[igKey])].map((_, i) => (
-      <BurgerIngredient key={igKey + i} type={igKey} />
-    ))
-  );
+  let burgerIngredients = Object.keys(props.ingredients)
+    .map((igKey) =>
+      [...Array(props.ingredients[igKey])].map((_, i) => (
+        <BurgerIngredient key={igKey + i} type={igKey} />
+      ))
+    )
+    .reduce((arr, el) => arr.concat(el), []);
+  if (burgerIngredients.length === 0) {
+    burgerIngredients = <p>Please add ingredients!</p>;
+  }
 
   return (
     <div className={styles.Burger}>
