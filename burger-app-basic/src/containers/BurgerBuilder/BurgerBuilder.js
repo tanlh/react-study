@@ -6,6 +6,7 @@ import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import Modal from "../../components/UI/Modal/Modal";
 import axios from "axios";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 const INGREDIENT_PRICE = {
   meat: 1.2,
@@ -138,4 +139,4 @@ class BuilderBuider extends Component {
   }
 }
 
-export default BuilderBuider;
+export default withErrorHandler(BuilderBuider);
