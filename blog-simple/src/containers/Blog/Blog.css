@@ -16,7 +16,8 @@
 }
 
 .Blog nav a:hover,
-.Blog nav a:active {
+.Blog nav a:active,
+.Blog nav a.active {
   color: #a34608;
   font-weight: bold;
 }

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Route, NavLink } from 'react-router-dom';
 
-import "./Blog.css";
-import Posts from "./Posts/Posts";
-import NewPost from "./NewPost/NewPost";
+import './Blog.css';
+import Posts from './Posts/Posts';
+import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
   render() {
@@ -13,18 +14,28 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <Link to="/">HOME</Link>
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName="my-active"
+                  activeStyle={{
+                    color: '#a34608',
+                    textDecoration: 'underline',
+                  }}
+                >
+                  HOME
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to={{
-                    pathname: "/new-post",
-                    hash: "#submit",
-                    search: "?quick-submit=true",
+                    pathname: '/new-post',
+                    hash: '#submit',
+                    search: '?quick-submit=true',
                   }}
                 >
                   NEW POST
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>
@@ -32,6 +43,7 @@ class Blog extends Component {
 
         <Route path="/" exact component={Posts} />
         <Route path="/new-post" component={NewPost} />
+        <Route path="/:id" component={FullPost} />
       </div>
     );
   }
