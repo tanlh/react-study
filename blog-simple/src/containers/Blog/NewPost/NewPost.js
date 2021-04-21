@@ -1,17 +1,24 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import "./NewPost.css";
+import './NewPost.css';
 
 class NewPost extends Component {
   state = {
-    title: "",
-    content: "",
-    author: "Max",
+    title: '',
+    content: '',
+    author: 'Max',
   };
 
   componentDidMount() {
-    console.log(this.props);
+    console.log('[NewPost] Query param:');
+    const query = new URLSearchParams(this.props.location.search);
+    for (let param of query.entries()) {
+      console.log(param);
+    }
+
+    console.log('[NewPost] Hash:');
+    console.log(this.props.location.hash);
   }
 
   postDataHandler = () => {
@@ -20,7 +27,7 @@ class NewPost extends Component {
       body: this.state.content,
       author: this.state.author,
     };
-    axios.post("/posts", data).then((response) => console.log(response));
+    axios.post('/posts', data).then((response) => console.log(response));
   };
 
   render() {
