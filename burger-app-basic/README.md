@@ -1,1 +1,1 @@
-### Burger builder basic
+### Burger builder basic: learn basic react syntax, hooks and events
