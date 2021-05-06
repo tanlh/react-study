@@ -1,4 +1,4 @@
-import Card from 'components/UI/Card';
+import Card from 'components/UI/card/Card';
 import ExpensesList from './ExpensesList';
 import ExpensesFilter from './ExpensesFilter';
 import ExpensesChart from './ExpensesChart';
@@ -7,7 +7,9 @@ import { useState } from 'react';
 import { getFullYear } from 'utils/date';
 
 function Expenses(props) {
-  const [filterYear, setFilterYear] = useState('2020');
+  const [filterYear, setFilterYear] = useState(
+    new Date().getFullYear().toString()
+  );
 
   const filterYearChangeHandler = (selectedYear) => {
     setFilterYear(selectedYear);

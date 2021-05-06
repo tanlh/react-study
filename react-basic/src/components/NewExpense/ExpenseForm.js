@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
+  const titleInputRef = useRef();
+
+  useEffect(() => {
+    titleInputRef.current.focus();
+  }, []);
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
@@ -23,7 +28,7 @@ const ExpenseForm = (props) => {
 
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
 
@@ -43,6 +48,7 @@ const ExpenseForm = (props) => {
             type="text"
             value={enteredTitle}
             onChange={titleChangeHandler}
+            ref={titleInputRef}
           />
         </div>
         <div className="new-expense__control">
