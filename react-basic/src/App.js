@@ -18,7 +18,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Expenses tracker</h1>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
