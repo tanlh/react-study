@@ -6,17 +6,15 @@ import { useState } from 'react';
 import { getFullYear } from 'utils/date';
 
 function Expenses(props) {
-  const [filterYear, setFilterYear] = useState('');
-  const [filteredExpenses, setFilterExpenses] = useState(props.items);
+  const [filterYear, setFilterYear] = useState('2020');
 
   const filterYearChangeHandler = (selectedYear) => {
     setFilterYear(selectedYear);
-
-    const afterFilterExpenses = [...filteredExpenses].filter(
-      (expense) => getFullYear(expense.date) === +selectedYear
-    );
-    setFilterExpenses(afterFilterExpenses);
   };
+
+  const filteredExpenses = props.items.filter(
+    (expense) => getFullYear(expense.date).toString() === filterYear
+  );
 
   return (
     <Card className="expenses">
