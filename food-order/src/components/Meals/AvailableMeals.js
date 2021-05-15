@@ -1,49 +1,70 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Card from 'components/UI/Card';
 import MealItem from 'components/Meals/MealItem/MealItem';
 import styles from './AvailableMeals.module.css';
 
-const DUMMY_MEALS = [
-  {
-    id: 'm1',
-    name: 'Sushi',
-    description: 'Finest fish and veggies',
-    price: 22.99,
-  },
-  {
-    id: 'm2',
-    name: 'Schnitzel',
-    description: 'A german specialty!',
-    price: 16.5,
-  },
-  {
-    id: 'm3',
-    name: 'Barbecue Burger',
-    description: 'American, raw, meaty',
-    price: 12.99,
-  },
-  {
-    id: 'm4',
-    name: 'Green Bowl',
-    description: 'Healthy...and green...',
-    price: 18.99,
-  },
-];
-
 const AvailableMeals = () => {
-  const meals = DUMMY_MEALS.map((meal) => (
-    <MealItem
-      key={meal.id}
-      id={meal.id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
-    />
-  ));
+  const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get('meals.json')
+      .then((response) => {
+        const loadedMeals = Object.entries(response.data).map(
+          ([key, value]) => {
+            return {
+              id: key,
+              ...value,
+            };
+          }
+        );
+        setMeals(loadedMeals);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setError(error);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className={styles['meals-loading']}>
+        <Card>
+          <p>Loading...</p>
+        </Card>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className={styles['meals-error']}>
+        <Card>
+          <p>Something went wrong!</p>
+        </Card>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.meals}>
       <Card>
-        <ul>{meals}</ul>
+        <ul>
+          {meals.map((meal) => (
+            <MealItem
+              key={meal.id}
+              id={meal.id}
+              name={meal.name}
+              description={meal.description}
+              price={meal.price}
+            />
+          ))}
+        </ul>
       </Card>
     </section>
   );

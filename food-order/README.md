@@ -1,1 +1,1 @@
-# Food order app to learn useEffect, reducers, refs, context API
+# Food order app to learn basic syntax, common hooks, HTTP request, form validation, context api
