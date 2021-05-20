@@ -1,18 +1,22 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-const useRequest = (requestFunction) => {
+const useRequest = (requestFunction, config = { manual: false }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const { manual } = config;
 
   const run = useCallback(
     async (requestData) => {
       setIsLoading(true);
+      setIsSuccess(false);
       setError(null);
 
       try {
         const data = await requestFunction(requestData);
         setData(data);
+        setIsSuccess(true);
       } catch (error) {
         setError(error);
       }
@@ -22,11 +26,20 @@ const useRequest = (requestFunction) => {
     [requestFunction]
   );
 
+  useEffect(() => {
+    if (manual) {
+      return;
+    }
+
+    run();
+  }, [manual, run]);
+
   return {
     data,
     isLoading,
     run,
     error,
+    isSuccess,
   };
 };
 

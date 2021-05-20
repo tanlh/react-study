@@ -13,7 +13,7 @@ const Comments = (props) => {
     data: loadedComments,
     isLoading,
     run: loadComments,
-  } = useRequest(getComments);
+  } = useRequest(getComments, { manual: true });
 
   const { quoteId } = props;
   useEffect(() => {

@@ -8,15 +8,20 @@ import LoadingSpinner from 'components/UI/LoadingSpinner';
 const NewCommentForm = (props) => {
   const commentTextRef = useRef();
 
-  const { isLoading, run: submitComment } = useRequest(addComment);
+  const {
+    isLoading,
+    isSuccess,
+    run: submitComment,
+  } = useRequest(addComment, {
+    manual: true,
+  });
 
   const { onAddedComment } = props;
-
   useEffect(() => {
-    if (!isLoading) {
+    if (isSuccess) {
       onAddedComment();
     }
-  }, [isLoading, onAddedComment]);
+  }, [isSuccess, onAddedComment]);
 
   const submitFormHandler = (event) => {
     event.preventDefault();
@@ -25,6 +30,8 @@ const NewCommentForm = (props) => {
       text: commentTextRef.current.value,
       quoteId: props.quoteId,
     });
+
+    commentTextRef.current.value = '';
   };
 
   return (

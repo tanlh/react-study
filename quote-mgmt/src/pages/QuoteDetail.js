@@ -9,7 +9,12 @@ import { useEffect } from 'react';
 const QuoteDetail = () => {
   const params = useParams();
   const match = useRouteMatch();
-  const { data: quote, isLoading, run: getQuote } = useRequest(getQuoteById);
+  const {
+    data: quote,
+    isLoading,
+    run: getQuote,
+    isSuccess,
+  } = useRequest(getQuoteById, { manual: true });
   const { quoteId } = params;
 
   useEffect(() => {
@@ -20,7 +25,7 @@ const QuoteDetail = () => {
     return <LoadingSpinner />;
   }
 
-  if (!quote) {
+  if (isSuccess && !quote) {
     return (
       <div className="centered">
         <h3>No Quote Found!</h3>

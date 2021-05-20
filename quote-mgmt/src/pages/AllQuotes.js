@@ -4,20 +4,15 @@ import { getAllQuotes } from 'api/quotes';
 import NoQuotesFound from 'components/quotes/NoQuotesFound';
 import QuoteList from 'components/quotes/QuoteList';
 import LoadingSpinner from 'components/UI/LoadingSpinner';
-import { useEffect } from 'react';
 
 const AllQuotes = () => {
-  const { data: quotes, isLoading, run: loadQuotes } = useRequest(getAllQuotes);
-
-  useEffect(() => {
-    loadQuotes();
-  }, [loadQuotes]);
+  const { data: quotes, isLoading, isSuccess } = useRequest(getAllQuotes);
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
-  if (quotes.length === 0) {
+  if (isSuccess && quotes.length === 0) {
     return <NoQuotesFound />;
   }
 
