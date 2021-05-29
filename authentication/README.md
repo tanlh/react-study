@@ -1,1 +1,1 @@
-# Study useEffect, Reducers and Context API
+# Study authentication with Firebase and basic authentication handling on FE
