@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.Button {
+.button {
   border: 1px solid #521751;
   font: inherit;
   padding: 8px;
@@ -13,7 +13,7 @@ body {
   cursor: pointer;
 }
 
-.Button:hover,
-.Button:active {
+.button:hover,
+.button:active {
   background-color: #fa923f;
 }

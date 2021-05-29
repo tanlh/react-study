@@ -1,1 +1,1 @@
-# Study basic animation react app
+# Study animation react app with react-animation-group

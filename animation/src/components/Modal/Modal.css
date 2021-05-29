@@ -1,13 +1,66 @@
-.Modal {
-    position: fixed;
-    z-index: 200;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 2px #ccc;
-    background-color: white;
-    padding: 10px;
-    text-align: center;
-    box-sizing: border-box;
-    top: 30%;
-    left: 25%;
-    width: 50%;
+.modal {
+  position: fixed;
+  z-index: 200;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 2px #ccc;
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  top: 30%;
+  left: 25%;
+  width: 50%;
+  transition: all 0.3s ease-out;
+}
+
+.modal-open {
+  animation: modalOpen 0.4s ease-out forwards;
+}
+
+.modal-close {
+  animation: modalClose 1s ease-out forwards;
+}
+
+.fade-slide-enter {
+}
+
+.fade-slide-enter-active {
+  animation: modalOpen 0.4s ease-out forwards;
+}
+
+.fade-slide-exit {
+}
+
+.fade-slide-exit-active {
+  animation: modalClose 1s ease-out forwards;
+}
+
+@keyframes modalOpen {
+  0% {
+    transform: translateY(-300%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(20%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalClose {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(20%);
+  }
+  75% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(-300%);
+    opacity: 0;
+  }
 }

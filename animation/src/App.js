@@ -1,23 +1,35 @@
-import React, { Component } from "react";
+import './App.css';
+import Modal from './components/Modal/Modal';
+import Backdrop from './components/Backdrop/Backdrop';
+import List from './components/List/List';
+import { useState } from 'react';
+import Transition from 'react-transition-group/Transition';
 
-import "./App.css";
-import Modal from "./components/Modal/Modal";
-import Backdrop from "./components/Backdrop/Backdrop";
-import List from "./components/List/List";
+const App = (props) => {
+  const [modalIsShow, setModalIsShow] = useState(false);
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>React Animations</h1>
-        <Modal />
-        <Backdrop />
-        <button className="Button">Open Modal</button>
-        <h3>Animating Lists</h3>
-        <List />
-      </div>
-    );
-  }
-}
+  const toggleModalHandler = () => {
+    setModalIsShow((prevState) => !prevState);
+  };
+
+  return (
+    <div className="app">
+      <h1>React Animations</h1>
+      <Modal show={modalIsShow} closed={toggleModalHandler} />
+      <Transition in={modalIsShow} timeout={300} mountOnEnter unmountOnExit>
+        {(state) => (
+          <>
+            <Backdrop show={state} />
+          </>
+        )}
+      </Transition>
+      <button className="button" onClick={toggleModalHandler}>
+        Open Modal
+      </button>
+      <h3>Animating Lists</h3>
+      <List />
+    </div>
+  );
+};
 
 export default App;
